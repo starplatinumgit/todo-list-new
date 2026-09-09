@@ -9,31 +9,94 @@
 <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Sixtyfour&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
 </head>
 <body>
   <div id="title-div"><h1>coldNote</h1></div>
   <div id="master-container"> 
     <div id="new-project-div">
-        <button id="new-project-button">+</button>
+        <button title="new project" id="new-project-button">+</button>
     </div>
     <div id="projects-container">
         <!-- INSTANCE SAMPLE BEGINS HERE -->
-        <div class="project-instance-div">
-            <div class="project-instance-div-contents">
+            <div class="project-instance-div">
+                <div class="contents-todos-container">
+                    <div class="todo-instance">
+                        <div class="todo-priority"><span>!!!</span></div>
+                        <div class="todo-bar">
+                            <span class="todo-title">>Write todo template</span>
+                            <button class="todo-delete" title="Delete todo">X</button>
+                            <span class="todo-due-date">15/04/2004</span>
+                            <input type="checkbox" class="todo-checkbox">
+                        </div>
+                        <div class="todo-description">
+                            <p class="todo-description-p">
+                                Basically what I need to do is create a html template for 
+                                the structure of a todo instance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <div class="contents-controls">
                     <span class="note-count">-3°</span>
-                    <span class="project-title">Coding project</span>
+                    <span class="project-title">Default project</span>
                     <img class="handle" src="handle.png">
                     <button class="add-note-button" title="New note">+</button>
                     <button class="delete-project-button" title="Delete project!"><img src="vecteezy_biohazard_36657370.svg"></button>
                 </div>
-                <div class="contents-todos-container"></div>
             </div>
-            <div class="project-instance-div-cover"></div>
-        </div>
         <!-- INSTANCE SAMPLE ENDS HERE -->
     </div>
+    <!-- NEW PROJECT DIALOG STARTS HERE -->
+    <dialog id="new-project-dialog">
+        <form id="new-project-form">
+            <div id="new-project-form-div">
+                <div id="new-project-close-div">
+                    <button id="close-project-dialog" type="reset">X</button>
+                </div>
+                <p>> new project</p>
+                <p>> please enter title below:</p>
+                <div id="new-project-input-div">
+                    <p>></p>
+                    <input type="text" id="project-title" name="project-title" autocomplete="off">
+                </div>
+            </div>
+        </form>
+    </dialog>
+    <!-- NEW PROJECT DIALOG ENDS HERE -->
+    <dialog id="new-todo-dialog">
+        <form id="new-todo-form">
+            <div id="new-todo-form-div">
+                <div id="new-todo-close-div">
+                    <button id="close-todo-dialog" type="reset">X</button>
+                </div>
+                <p>> new todo</p>
+                <label for="todo-title"> >Please enter todo title below:</label>
+                <div class="new-todo-input-div">
+                    <p>></p>
+                    <input autocomplete="off" type="text" id="todo-title" name="todo-title" class="todo-input">
+                </div>
+                <label for="todo-description"> >Please enter todo description below:</label>
+                <div class="new-todo-input-div">
+                    <p>></p>
+                    <textarea autocomplete="off" rows="3" id="todo-description" name="todo-description" class="todo-input"></textarea>
+                </div>
+                <label for="todo-date"> >Please enter todo due-date below:</label>
+                <div class="new-todo-input-div">
+                    <p>></p>
+                    <input type="text" autocomplete="off" id="todo-date" name="todo-date" class="todo-input">
+                </div>
+                <label for="todo-priority"> >Please enter !/!!/!!! to indicate the todo's urgency below:</label>
+                <div class="new-todo-input-div">
+                    <p>></p>
+                    <input autocomplete="off" type="text" id="todo-priority" name="todo-priority" class="todo-input">
+                </div>
+                <button type="submit">submit</button>
+            </div>
+        </form>
+    </dialog>
+
   </div>
 </body>
 </html>
