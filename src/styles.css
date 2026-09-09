@@ -264,7 +264,15 @@ body {
   font-size: 0.8rem;
 }
 
+.todo-checkbox {
+  background-color: white;
+  border-radius: 5px;
+}
 
+.todo-checkbox:checked {
+  background-color: green;
+  accent-color: gray;
+}
 
 /* todo instance end */
 

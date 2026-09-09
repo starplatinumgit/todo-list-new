@@ -107,6 +107,15 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
         const descriptionDiv = tools.createElement('div', 'todo-description', todoDiv);
         const descriptionP = tools.createElement('p', 'todo-description-p', descriptionDiv);
         descriptionP.textContent = project.todoArr[i].description;
+
+        todoCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                todoPriority.textContent = "✓";
+            }
+            else {
+                todoPriority.textContent = project.todoArr[i].priority;
+            }
+        })
     }
 }
 
@@ -146,3 +155,4 @@ todoForm.addEventListener('submit', (e) => {
 const updateTodoCount = function() {
     currentTodoCount.textContent = `-${currentProject.todoCount}°`;
 }
+
