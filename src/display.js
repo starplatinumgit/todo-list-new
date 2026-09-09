@@ -30,12 +30,26 @@ export const renderProjects = function(projectsArr) {
             newTodoDialog.showModal();
         })
 
+        // create delete project functionality
         deleteProjectButton.addEventListener('click', () => {
             //delete the project
             projectsArr.splice(i, 1);
 
             //rerender projects
             renderProjects(projectsArr);
+        })
+
+        // create open project functionality 
+        openProjectButton.addEventListener('click', () => {
+            // check if project is already open
+            // render todos 
+            // if already open, wipe todos 
+            if (todoDiv.hasChildNodes()) {
+                wipeContents(todoDiv);
+            }
+            else {
+                renderTodos(projectsArr[i].todoArr, todoDiv);
+            }
         })
 
         //fill controls div element's content
