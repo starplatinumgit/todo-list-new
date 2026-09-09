@@ -21,12 +21,13 @@ export const renderProjects = function(projectsArr) {
         const deleteProjectButton = tools.createElement('button', 'delete-project-button', controlsDiv);
         const deleteProjectImage = tools.createElement('img', 'delete-project-image', deleteProjectButton);
 
-        //create the create a todo functionality 
+        //create a todo
         addTodoButton.addEventListener('click', () => {
             const newTodoDialog = document.getElementById('new-todo-dialog');
 
             currentProject = projectsArr[i];
             currentTodoDiv = todoDiv;
+            currentTodoCount = todoCount;
             newTodoDialog.showModal();
         })
 
@@ -48,7 +49,7 @@ export const renderProjects = function(projectsArr) {
                 wipeContents(todoDiv);
             }
             else {
-                renderTodos(projectsArr[i].todoArr, todoDiv);
+                renderTodos(projectsArr[i], todoDiv, todoCount);
             }
         })
 
@@ -62,14 +63,14 @@ export const renderProjects = function(projectsArr) {
     }
 }
 
-const renderTodos = function(todoArr, todoContainer) {
+const renderTodos = function(project, todoContainer, todoCountElement) {
     wipeContents(todoContainer);
-    for (let i = 0; i < todoArr.length; i++) {
+    for (let i = 0; i < (project.todoArr).length; i++) {
         const todoDiv = tools.createElement('div', 'todo-instance', todoContainer);
 
         //create priority
         const todoPriority = tools.createElement('span', 'todo-priority', todoDiv);
-        todoPriority.textContent = todoArr[i].priority;
+        todoPriority.textContent = project.todoArr[i].priority;
 
         //create bar and contents 
         const todoBar = tools.createElement('div', 'todo-bar', todoDiv);
@@ -79,25 +80,33 @@ const renderTodos = function(todoArr, todoContainer) {
         const todoCheckbox = tools.createElement('input', 'todo-checkbox', todoBar);
 
         todoDeleteButton.addEventListener('click', (e) => {
-           //delete todo
-            console.log(todoArr);
-            todoArr.splice(i, 1);
-            console.log(todoArr);
-           // reredner todos - reredering todos will change this event listener, thus indexes
-           //will always remain correct 
-            renderTodos(todoArr, todoContainer);
+            // delete todo
+            project.todoArr.splice(i, 1);
+
+            // decrease todo count
+            project.todoCount--;
+            console.log(todoCountElement);
+
+            //need to change the current project and todoCountElement
+            //the updateTodoCount function requires them to be set
+            //if not set here, they may be set by say an add todo prior 
+
+            todoCountElement.textContent = `-${project.todoCount}°`;
+
+            // rerender
+            renderTodos(project, todoContainer, todoCountElement);
         })
 
         //fill bar contents' contents
-        todoTitle.textContent = todoArr[i].title;
+        todoTitle.textContent = project.todoArr[i].title;
         todoDeleteButton.textContent = "X";
-        todoDueDate.textContent = todoArr[i].dueDate;
+        todoDueDate.textContent = project.todoArr[i].dueDate;
         todoCheckbox.type = "checkbox";
 
         //create description and its contents
         const descriptionDiv = tools.createElement('div', 'todo-description', todoDiv);
         const descriptionP = tools.createElement('p', 'todo-description-p', descriptionDiv);
-        descriptionP.textContent = todoArr[i].description;
+        descriptionP.textContent = project.todoArr[i].description;
     }
 }
 
@@ -110,6 +119,7 @@ export const wipeContents = function(containerElement) {
 // functionality for new todo form 
 let currentProject = undefined;
 let currentTodoDiv = undefined;
+let currentTodoCount = undefined;
 const todoForm = document.getElementById('new-todo-form');
 const todoDialog = document.getElementById('new-todo-dialog');
 
@@ -122,12 +132,17 @@ todoForm.addEventListener('submit', (e) => {
         document.getElementById('todo-description').value,
         document.getElementById('todo-date').value
     )
-    console.log(currentProject);
+
 
     //render todo 
-    wipeContents(currentTodoDiv)
-    renderTodos(currentProject.todoArr, currentTodoDiv);
-
+    currentProject.todoCount++;
+    updateTodoCount();
+    renderTodos(currentProject, currentTodoDiv, currentTodoCount);
+    
     todoForm.reset();
     todoDialog.close();
 })
+
+const updateTodoCount = function() {
+    currentTodoCount.textContent = `-${currentProject.todoCount}°`;
+}

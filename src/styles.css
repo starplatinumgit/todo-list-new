@@ -190,7 +190,7 @@ body {
   resize: vertical;
 }
 
-#project-title:focus #todo-title:focus{
+#project-title:focus, #todo-title:focus, #new-project-button:focus{
   outline: none;
 }
 
