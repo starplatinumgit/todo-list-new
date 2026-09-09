@@ -5,8 +5,8 @@ import biohazard from "./vecteezy_biohazard_36657370.svg";
 export const renderProjects = function(projectsArr) {
     //for each project in the projectsArr, we need to create a project instance
     //div, a contents-todo-container, and the contents-controls with it's contents 
-
-    for (const project of projectsArr) {
+    wipeContents(document.getElementById('projects-container'));
+    for (let i = 0; i < projectsArr.length; i++) {
         const instanceDiv = tools.createElement('div', 'project-instance-div');
         document.getElementById('projects-container').appendChild(instanceDiv);
 
@@ -25,14 +25,22 @@ export const renderProjects = function(projectsArr) {
         addTodoButton.addEventListener('click', () => {
             const newTodoDialog = document.getElementById('new-todo-dialog');
 
-            currentProject = project;
+            currentProject = projectsArr[i];
             currentTodoDiv = todoDiv;
             newTodoDialog.showModal();
         })
 
+        deleteProjectButton.addEventListener('click', () => {
+            //delete the project
+            projectsArr.splice(i, 1);
+
+            //rerender projects
+            renderProjects(projectsArr);
+        })
+
         //fill controls div element's content
-        todoCount.textContent = `-${project.todoCount}°`;
-        projectTitle.textContent = project.title;
+        todoCount.textContent = `-${projectsArr[i].todoCount}°`;
+        projectTitle.textContent = projectsArr[i].title;
         openProjectButton.src = handle; 
         addTodoButton.textContent = "+";
         deleteProjectImage.src = biohazard;
