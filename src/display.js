@@ -70,7 +70,6 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
 
         //create priority
         const todoPriority = tools.createElement('span', 'todo-priority', todoDiv);
-        todoPriority.textContent = project.todoArr[i].priority;
 
         //create bar and contents 
         const todoBar = tools.createElement('div', 'todo-bar', todoDiv);
@@ -109,13 +108,24 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
         descriptionP.textContent = project.todoArr[i].description;
 
         todoCheckbox.addEventListener('change', (e) => {
-            if (e.target.checked) {
+            project.todoArr[i].complete = (!(project.todoArr[i].complete))
+            renderPriorityDependentElements();
+        })
+        
+        const renderPriorityDependentElements = function() {
+            console.log(`RAN! ${project.todoArr[i].complete}`);
+            if (project.todoArr[i].complete) {
                 todoPriority.textContent = "✓";
+                todoCheckbox.checked = true;
+                todoDiv.classList.add('todo-complete');
             }
             else {
                 todoPriority.textContent = project.todoArr[i].priority;
+                todoDiv.classList.remove('todo-complete');
             }
-        })
+
+        }
+        renderPriorityDependentElements();
     }
 }
 

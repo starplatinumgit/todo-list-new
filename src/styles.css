@@ -274,6 +274,11 @@ body {
   accent-color: gray;
 }
 
+.todo-complete {
+  opacity: 50%;
+}
+
+
 /* todo instance end */
 
 /* contents controls start */
