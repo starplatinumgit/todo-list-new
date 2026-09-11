@@ -256,12 +256,14 @@ body {
   grid-column-start: 2;
   grid-row-start: 2;
   font-family: "Bitcount Single";
-  background-color: black;
   color: #FFC220;
   text-shadow: 0 0 8px #FFC220;
   color: white;
-  background-color: rgb(3, 3, 119);
   font-size: 0.8rem;
+}
+
+.todo-description-p {
+  background-color: rgb(3, 3, 119);
 }
 
 .todo-checkbox {
