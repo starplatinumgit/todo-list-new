@@ -149,7 +149,7 @@ todoForm.addEventListener('submit', (e) => {
         document.getElementById('todo-title').value,
         document.getElementById('todo-priority').value,
         document.getElementById('todo-description').value,
-        document.getElementById('todo-date').value
+        document.getElementById('todo-date').valueAsDate
     )
 
 

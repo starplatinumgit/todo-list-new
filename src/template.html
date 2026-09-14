@@ -65,6 +65,7 @@
         </form>
     </dialog>
     <!-- NEW PROJECT DIALOG ENDS HERE -->
+     <!-- NEW TODO DIALOG STARTS HERE -->
     <dialog id="new-todo-dialog">
         <form id="new-todo-form">
             <div id="new-todo-form-div">
@@ -72,30 +73,31 @@
                     <button id="close-todo-dialog" type="reset">X</button>
                 </div>
                 <p>> new todo</p>
-                <label for="todo-title"> >Please enter todo title below:</label>
+                <label for="todo-title"> >Enter your todo title:</label>
                 <div class="new-todo-input-div">
                     <p>></p>
-                    <input autocomplete="off" type="text" id="todo-title" name="todo-title" class="todo-input">
+                    <input autocomplete="off" type="text" id="todo-title" name="todo-title" class="todo-input" required>
                 </div>
-                <label for="todo-description"> >Please enter todo description below:</label>
+                <label for="todo-description"> >Describe this task:</label>
                 <div class="new-todo-input-div">
                     <p>></p>
                     <textarea autocomplete="off" rows="3" id="todo-description" name="todo-description" class="todo-input"></textarea>
                 </div>
-                <label for="todo-date"> >Please enter todo due-date below:</label>
+                <label for="todo-date"> >When is this task due?:</label>
                 <div class="new-todo-input-div">
                     <p>></p>
-                    <input type="text" autocomplete="off" id="todo-date" name="todo-date" class="todo-input">
+                    <input type="date" autocomplete="off" id="todo-date" name="todo-date" class="todo-input" required>
                 </div>
-                <label for="todo-priority"> >Please enter !/!!/!!! to indicate the todo's urgency below:</label>
+                <label for="todo-priority"> >How urgent is this task?:</label>
                 <div class="new-todo-input-div">
                     <p>></p>
-                    <input autocomplete="off" type="text" id="todo-priority" name="todo-priority" class="todo-input">
+                    <input type="range" min="0" max="2" id="todo-priority" name="todo-priority" class="todo-input" required>
                 </div>
                 <button type="submit">submit</button>
             </div>
         </form>
     </dialog>
+     <!-- NEW TODO DIALOG ENDS HERE -->
 
   </div>
 </body>
