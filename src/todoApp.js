@@ -36,4 +36,7 @@ export const runApp = function() {
         document.getElementById('new-todo-form').reset();
         document.getElementById('new-todo-dialog').close();
     })
+
+    myProjects.createProject("Default Project");
+    display.renderProjects(myProjects.projectsArr);
 }
