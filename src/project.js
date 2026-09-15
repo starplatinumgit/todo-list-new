@@ -10,6 +10,7 @@ export class Project {
 
     createTodo(title, priority, description, dueDate) {
         this.todoArr.push(todo.createTodo(title, priority, description, dueDate));
+        this.todoCount++;
         storage.saveState();
     }
 

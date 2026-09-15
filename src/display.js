@@ -1,6 +1,7 @@
 import * as tools from "./tools.js"
 import handle from "./handle.png";
 import biohazard from "./vecteezy_biohazard_36657370.svg";
+import * as storage from "./storage.js";
 
 export const renderProjects = function(projectsArr) {
     //for each project in the projectsArr, we need to create a project instance
@@ -84,6 +85,7 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
 
             // decrease todo count
             project.todoCount--;
+            storage.saveState();
             console.log(todoCountElement);
 
             //need to change the current project and todoCountElement
@@ -109,6 +111,8 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
 
         todoCheckbox.addEventListener('change', (e) => {
             project.todoArr[i].complete = (!(project.todoArr[i].complete))
+            storage.saveState();
+            todoDiv.classList.toggle('todo-complete');
             renderPriorityDependentElements();
         })
         
@@ -117,15 +121,16 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
             if (project.todoArr[i].complete) {
                 todoPriority.textContent = "✓";
                 todoCheckbox.checked = true;
-                todoDiv.classList.add('todo-complete');
             }
             else {
                 todoPriority.textContent = project.todoArr[i].priority;
-                todoDiv.classList.remove('todo-complete');
             }
 
         }
         renderPriorityDependentElements();
+        if (project.todoArr[i].complete) {
+            todoDiv.classList.add('todo-complete');
+        }
     }
 }
 
@@ -149,12 +154,11 @@ todoForm.addEventListener('submit', (e) => {
         document.getElementById('todo-title').value,
         document.getElementById('todo-priority').value,
         document.getElementById('todo-description').value,
-        document.getElementById('todo-date').valueAsDate
+        document.getElementById('todo-date').value
     )
 
 
     //render todo 
-    currentProject.todoCount++;
     updateTodoCount();
     renderTodos(currentProject, currentTodoDiv, currentTodoCount);
     
