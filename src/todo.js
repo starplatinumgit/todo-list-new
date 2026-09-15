@@ -9,10 +9,22 @@ class Todo {
        }
        this.priority = j; 
        this.description = description; 
-       this.dueDate = format(dueDate, 'dd/MM/yyyy');
+       if (dueDate) {
+            this.dueDate = format(dueDate, 'dd/MM/yyyy');
+       }
        this.complete = false;
+    }
+
+    fromTodo(parsedTodo) {
+       this.title = parsedTodo.title;
+       this.priority = parsedTodo.priority;
+       this.description = parsedTodo.description;
+       this.dueDate = parsedTodo.dueDate; //might need to create a new date object here 
+       this.complete = parsedTodo.complete;
     }
 }
 
 
-export const createTodo = (title, priority, description, dueDate) => new Todo(title, priority, description, dueDate);
+export const createTodo = function(title, priority, description, dueDate){
+   return new Todo(title, priority, description, dueDate);
+}

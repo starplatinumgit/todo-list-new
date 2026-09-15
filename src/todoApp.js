@@ -1,9 +1,22 @@
+import * as storage from "./storage.js";
 import * as projects from "./projects.js";
 import * as tools from "./tools.js";
 import * as display from "./display.js";
 
 export const runApp = function() {
-    const myProjects = projects.createProjects(); 
+    let myProjects = undefined;
+    if (!localStorage.getItem("projectsData")) {
+        //if theres no saves, then create a projects and create saveState function 
+        console.log("no data!");
+        myProjects = projects.createProjects(); 
+        storage.createSaveStateFunction(myProjects);
+        myProjects.createProject("Default Project");
+    }
+    else {
+        console.log("data!");
+        myProjects = storage.setProjects();
+        storage.createSaveStateFunction(myProjects);
+    }
 
     const newProjectDialog = document.getElementById('new-project-dialog');
     const newProjectForm = document.getElementById('new-project-form');
@@ -36,7 +49,6 @@ export const runApp = function() {
         document.getElementById('new-todo-form').reset();
         document.getElementById('new-todo-dialog').close();
     })
-
-    myProjects.createProject("Default Project");
+    console.log(`Savestate: ${storage.saveState}`);
     display.renderProjects(myProjects.projectsArr);
 }
