@@ -14,7 +14,7 @@ export const runApp = function() {
     }
     else {
         console.log("data!");
-        myProjects = storage.setProjects();
+        myProjects = storage.setProjects(); 
         storage.createSaveStateFunction(myProjects);
     }
 
@@ -35,7 +35,6 @@ export const runApp = function() {
 
         //create a new project 
         myProjects.createProject(document.getElementById('project-title').value);
-        console.log(myProjects);
 
         //now render the projects
         display.wipeContents(document.getElementById('projects-container'));
@@ -49,6 +48,5 @@ export const runApp = function() {
         document.getElementById('new-todo-form').reset();
         document.getElementById('new-todo-dialog').close();
     })
-    console.log(`Savestate: ${storage.saveState}`);
     display.renderProjects(myProjects.projectsArr);
 }

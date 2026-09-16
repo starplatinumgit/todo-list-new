@@ -86,7 +86,6 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
             // decrease todo count
             project.todoCount--;
             storage.saveState();
-            console.log(todoCountElement);
 
             //need to change the current project and todoCountElement
             //the updateTodoCount function requires them to be set
@@ -117,7 +116,6 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
         })
         
         const renderPriorityDependentElements = function() {
-            console.log(`RAN! ${project.todoArr[i].complete}`);
             if (project.todoArr[i].complete) {
                 todoPriority.textContent = "✓";
                 todoCheckbox.checked = true;
