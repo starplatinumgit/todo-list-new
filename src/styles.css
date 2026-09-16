@@ -100,6 +100,89 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
 }
 
+.ibm-plex-mono-thin {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.ibm-plex-mono-extralight {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.ibm-plex-mono-light {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ibm-plex-mono-regular {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ibm-plex-mono-medium {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ibm-plex-mono-semibold {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.ibm-plex-mono-bold {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ibm-plex-mono-thin-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.ibm-plex-mono-extralight-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.ibm-plex-mono-light-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ibm-plex-mono-regular-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ibm-plex-mono-medium-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ibm-plex-mono-semibold-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.ibm-plex-mono-bold-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
 
 /* fonts */
 
@@ -161,7 +244,6 @@ body {
 #new-project-dialog, #new-todo-dialog {
   font-family: "VT323";
   border: 1px solid black;
-  background-color:  rgb(3, 3, 119);
   color: white;
 }
 
@@ -198,16 +280,21 @@ body {
   cursor: pointer;
 }
 
+dialog {
+  background-color: blue;
+}
+
 /* new project dialog end */
 
 /* contents-todos-container start */
 
-.contents-todo-container {
-  box-shadow: inset 0px 0px 0px 10px black;
-  background-color: #636363;
-  padding: 10px;
+.contents-todos-container {
   display: flex;
   flex-direction: column;
+}
+
+.contents-todos-container-open {
+  border: 20px ridge #213042;
 }
 
 /* contents-todos-container end */
@@ -216,12 +303,15 @@ body {
 
 .todo-instance {
   display: grid;
-  grid-template-rows: repeat(2, auto);
+  grid-template-rows: repeat(3, auto);
   grid-template-columns: 1fr 4fr;
-  box-shadow: inset 0px 0px 0px 10px #1170B1;
   padding: 20px;
-  background-color: #c2c0c0;
+  background-size: 100%;
+  background-color: #fff7e2;
+  background-repeat: none;
   gap: 5px;
+  font-family: "IBM Plex Mono";
+  color: black;
 }
 
 .todo-priority {
@@ -231,39 +321,28 @@ body {
   grid-row: 1 / span 2;
   grid-column-start: 1;
   font-size: 2rem;
-  font-family: "Bitcount Single";
-  color: white;
   text-shadow: 0 0 8px white;
 }
 
 .todo-bar {
   grid-row-start: 1;
   grid-column-start: 2;
-  font-family: "Bitcount Single";
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .todo-title {
-  background-color: blue;
-  color: white;
   text-shadow: 0 0 8px white;
 }
-
 .todo-description {
   grid-column-start: 2;
   grid-row-start: 2;
-  font-family: "Bitcount Single";
-  color: #FFC220;
-  text-shadow: 0 0 8px #FFC220;
-  color: white;
   font-size: 0.8rem;
 }
 
 .todo-description-p {
-  background-color: rgb(3, 3, 119);
 }
 
 .todo-checkbox {
@@ -274,6 +353,11 @@ body {
 .todo-checkbox:checked {
   background-color: green;
   accent-color: gray;
+}
+
+.todo-due-date {
+  grid-row-start: 3;
+  grid-column: 2;
 }
 
 .todo-complete {
@@ -288,13 +372,14 @@ body {
 .contents-controls {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-  box-shadow: inset 0px 0px 0px 10px #1170B1;
   padding: 20px;
-  background-color: #213042;
+  background-color: #263649;
+  background-color: rgb(214, 211, 211);
   color: white;
   font-family: "Bitcount Single";
   justify-items: center;
   align-items: center;
+  border: 10px solid #213042;
 }
 
 .note-count {

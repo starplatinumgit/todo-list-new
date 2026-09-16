@@ -10,7 +10,7 @@ class Todo {
        this.priority = j; 
        this.description = description; 
        if (dueDate) {
-            this.dueDate = format(dueDate, 'dd/MM/yyyy');
+           this.dueDate = format(dueDate, 'dd/MM/yyyy');
        }
        this.complete = false;
     }

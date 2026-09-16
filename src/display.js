@@ -47,6 +47,7 @@ export const renderProjects = function(projectsArr) {
             // render todos 
             // if already open, wipe todos 
             if (todoDiv.hasChildNodes()) {
+                todoDiv.classList.remove('contents-todos-container-open');
                 wipeContents(todoDiv);
             }
             else {
@@ -66,68 +67,72 @@ export const renderProjects = function(projectsArr) {
 
 const renderTodos = function(project, todoContainer, todoCountElement) {
     wipeContents(todoContainer);
-    for (let i = 0; i < (project.todoArr).length; i++) {
-        const todoDiv = tools.createElement('div', 'todo-instance', todoContainer);
-
-        //create priority
-        const todoPriority = tools.createElement('span', 'todo-priority', todoDiv);
-
-        //create bar and contents 
-        const todoBar = tools.createElement('div', 'todo-bar', todoDiv);
-        const todoTitle = tools.createElement('p', 'todo-title', todoBar);
-        const todoDeleteButton = tools.createElement('button', 'todo-delete', todoBar);
-        const todoDueDate = tools.createElement('p', 'todo-due-date', todoBar);
-        const todoCheckbox = tools.createElement('input', 'todo-checkbox', todoBar);
-
-        todoDeleteButton.addEventListener('click', (e) => {
-            // delete todo
-            project.todoArr.splice(i, 1);
-
-            // decrease todo count
-            project.todoCount--;
-            storage.saveState();
-
-            //need to change the current project and todoCountElement
-            //the updateTodoCount function requires them to be set
-            //if not set here, they may be set by say an add todo prior 
-
-            todoCountElement.textContent = `-${project.todoCount}°`;
-
-            // rerender
-            renderTodos(project, todoContainer, todoCountElement);
-        })
-
-        //fill bar contents' contents
-        todoTitle.textContent = project.todoArr[i].title;
-        todoDeleteButton.textContent = "X";
-        todoDueDate.textContent = project.todoArr[i].dueDate;
-        todoCheckbox.type = "checkbox";
-
-        //create description and its contents
-        const descriptionDiv = tools.createElement('div', 'todo-description', todoDiv);
-        const descriptionP = tools.createElement('p', 'todo-description-p', descriptionDiv);
-        descriptionP.textContent = project.todoArr[i].description;
-
-        todoCheckbox.addEventListener('change', (e) => {
-            project.todoArr[i].complete = (!(project.todoArr[i].complete))
-            storage.saveState();
-            todoDiv.classList.toggle('todo-complete');
+    if (todoContainer.length != 0) {
+        todoContainer.classList.add('contents-todos-container-open');
+        for (let i = 0; i < (project.todoArr).length; i++) {
+            const todoDiv = tools.createElement('div', 'todo-instance', todoContainer);
+    
+            //create priority
+            const todoPriority = tools.createElement('span', 'todo-priority', todoDiv);
+    
+            //create bar and contents 
+            const todoBar = tools.createElement('div', 'todo-bar', todoDiv);
+            const todoTitle = tools.createElement('p', 'todo-title', todoBar);
+            const buttonDiv = tools.createElement('div', 'button-div', todoBar);
+            const todoDeleteButton = tools.createElement('button', 'todo-delete', buttonDiv);
+            const todoDueDate = tools.createElement('p', 'todo-due-date', todoDiv);
+            const todoCheckbox = tools.createElement('input', 'todo-checkbox', buttonDiv);
+    
+            todoDeleteButton.addEventListener('click', (e) => {
+                // delete todo
+                project.todoArr.splice(i, 1);
+    
+                // decrease todo count
+                project.todoCount--;
+                storage.saveState();
+    
+                //need to change the current project and todoCountElement
+                //the updateTodoCount function requires them to be set
+                //if not set here, they may be set by say an add todo prior 
+    
+                todoCountElement.textContent = `-${project.todoCount}°`;
+    
+                // rerender
+                renderTodos(project, todoContainer, todoCountElement);
+            })
+    
+            //fill bar contents' contents
+            todoTitle.textContent = project.todoArr[i].title;
+            todoDeleteButton.textContent = "X";
+            todoDueDate.textContent = project.todoArr[i].dueDate;
+            todoCheckbox.type = "checkbox";
+    
+            //create description and its contents
+            const descriptionDiv = tools.createElement('div', 'todo-description', todoDiv);
+            const descriptionP = tools.createElement('p', 'todo-description-p', descriptionDiv);
+            descriptionP.textContent = project.todoArr[i].description;
+    
+            todoCheckbox.addEventListener('change', (e) => {
+                project.todoArr[i].complete = (!(project.todoArr[i].complete))
+                storage.saveState();
+                todoDiv.classList.toggle('todo-complete');
+                renderPriorityDependentElements();
+            })
+            
+            const renderPriorityDependentElements = function() {
+                if (project.todoArr[i].complete) {
+                    todoPriority.textContent = "✓";
+                    todoCheckbox.checked = true;
+                }
+                else {
+                    todoPriority.textContent = project.todoArr[i].priority;
+                }
+    
+            }
             renderPriorityDependentElements();
-        })
-        
-        const renderPriorityDependentElements = function() {
             if (project.todoArr[i].complete) {
-                todoPriority.textContent = "✓";
-                todoCheckbox.checked = true;
+                todoDiv.classList.add('todo-complete');
             }
-            else {
-                todoPriority.textContent = project.todoArr[i].priority;
-            }
-
-        }
-        renderPriorityDependentElements();
-        if (project.todoArr[i].complete) {
-            todoDiv.classList.add('todo-complete');
         }
     }
 }
