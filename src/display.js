@@ -18,8 +18,11 @@ export const renderProjects = function(projectsArr) {
         const todoCount = tools.createElement('span', 'note-count', controlsDiv);
         const projectTitle = tools.createElement('span', 'project-title', controlsDiv);
         const openProjectButton = tools.createElement('img', 'handle', controlsDiv);
+        openProjectButton.title = "open project";
         const addTodoButton = tools.createElement('button', 'add-note-button', controlsDiv);
+        addTodoButton.title = "create todo";
         const deleteProjectButton = tools.createElement('button', 'delete-project-button', controlsDiv);
+        deleteProjectButton.title = "delete project";
         const deleteProjectImage = tools.createElement('img', 'delete-project-image', deleteProjectButton);
 
         //create a todo
@@ -56,7 +59,7 @@ export const renderProjects = function(projectsArr) {
         })
 
         //fill controls div element's content
-        todoCount.textContent = `-${projectsArr[i].todoCount}°`;
+        todoCount.textContent = `${projectsArr[i].todoCount}`;
         projectTitle.textContent = projectsArr[i].title;
         openProjectButton.src = handle; 
         addTodoButton.textContent = "+";
@@ -67,7 +70,7 @@ export const renderProjects = function(projectsArr) {
 
 const renderTodos = function(project, todoContainer, todoCountElement) {
     wipeContents(todoContainer);
-    if (todoContainer.length != 0) {
+    if (project.todoArr.length != 0) {
         todoContainer.classList.add('contents-todos-container-open');
         for (let i = 0; i < (project.todoArr).length; i++) {
             const todoDiv = tools.createElement('div', 'todo-instance', todoContainer);
@@ -82,6 +85,8 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
             const todoDeleteButton = tools.createElement('button', 'todo-delete', buttonDiv);
             const todoDueDate = tools.createElement('p', 'todo-due-date', todoDiv);
             const todoCheckbox = tools.createElement('input', 'todo-checkbox', buttonDiv);
+
+            todoDeleteButton.title  = "delete todo";
     
             todoDeleteButton.addEventListener('click', (e) => {
                 // delete todo
@@ -96,6 +101,9 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
                 //if not set here, they may be set by say an add todo prior 
     
                 todoCountElement.textContent = `-${project.todoCount}°`;
+                if (project.todoCount === 0) {
+                    todoContainer.classList.remove('contents-todos-container-open');
+                }
     
                 // rerender
                 renderTodos(project, todoContainer, todoCountElement);

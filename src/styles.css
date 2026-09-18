@@ -184,6 +184,13 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
+.caveat {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* fonts */
 
 
@@ -192,13 +199,13 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
-    background-color: white;
+    background-color: rgb(238, 232, 221);
 }
 
 #title-div {
   grid-column-start: 2;
-  font-family: "Bitcount Single";
-  color: #223F8B;
+  font-family: "IBM Plex Mono";
+  color: #000000;
   height: 70px;
   display: flex;
   justify-content: center;
@@ -220,10 +227,9 @@ body {
 #new-project-button {
     width: 100%;
     border: none;
-    border-radius: 6px;
-    background-color: #eff0ed;
+    border-radius: 3px;
+    background-color: #d8d7cf;
     font-family: "Bitcount Single";
-    color: #223F8B;
 }
 
 #new-project-button:hover {
@@ -308,6 +314,7 @@ dialog {
   padding: 20px;
   background-size: 100%;
   background-color: #fff7e2;
+  background-color: white;
   background-repeat: none;
   gap: 5px;
   font-family: "IBM Plex Mono";
@@ -342,9 +349,6 @@ dialog {
   font-size: 0.8rem;
 }
 
-.todo-description-p {
-}
-
 .todo-checkbox {
   background-color: white;
   border-radius: 5px;
@@ -364,6 +368,10 @@ dialog {
   opacity: 50%;
 }
 
+.todo-delete {
+  color: black;
+}
+
 
 /* todo instance end */
 
@@ -373,21 +381,30 @@ dialog {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
   padding: 20px;
-  background-color: #263649;
   background-color: rgb(214, 211, 211);
   color: white;
   font-family: "Bitcount Single";
   justify-items: center;
   align-items: center;
-  border: 10px solid #213042;
+  border: 10px solid #4b4c4e;
 }
 
 .note-count {
-  background-color: blue;
+  color: black;
+  background-image: url('tape.png');
+  background-size: 100%;
+  padding: 10px;
+  font-family: 'Caveat';
+  font-weight: 700;
 }
 
 .project-title {
-  background-color: blue;
+  color: black;
+  background-image: url('tape.png');
+  background-size: 100%;
+  padding: 10px;
+  font-family: 'Caveat';
+  font-weight: 700;
 }
 
 .handle {
@@ -402,7 +419,7 @@ dialog {
 .add-note-button, .delete-project-button,  .todo-delete {
   border: none;
   background-color: transparent;
-  color: white;
+  color: black;
   height: 40px;
   width: 40px;
 }
