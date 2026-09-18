@@ -39,7 +39,7 @@ export const renderProjects = function(projectsArr) {
         deleteProjectButton.addEventListener('click', () => {
             //delete the project
             projectsArr.splice(i, 1);
-
+            storage.saveState();
             //rerender projects
             renderProjects(projectsArr);
         })
