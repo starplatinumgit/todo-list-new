@@ -59,7 +59,7 @@ export const renderProjects = function(projectsArr) {
         })
 
         //fill controls div element's content
-        todoCount.textContent = `${projectsArr[i].todoCount}`;
+        todoCount.textContent = `${tools.formatNumberToTally(projectsArr[i].todoCount)}`;
         projectTitle.textContent = projectsArr[i].title;
         openProjectButton.src = handle; 
         addTodoButton.textContent = "+";
@@ -100,7 +100,7 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
                 //the updateTodoCount function requires them to be set
                 //if not set here, they may be set by say an add todo prior 
     
-                todoCountElement.textContent = `-${project.todoCount}°`;
+                todoCountElement.textContent = `${tools.formatNumberToTally(project.todoCount)}`;
                 if (project.todoCount === 0) {
                     todoContainer.classList.remove('contents-todos-container-open');
                 }
@@ -178,6 +178,6 @@ todoForm.addEventListener('submit', (e) => {
 })
 
 const updateTodoCount = function() {
-    currentTodoCount.textContent = `-${currentProject.todoCount}°`;
+    currentTodoCount.textContent = `${tools.formatNumberToTally(currentProject.todoCount)}`;
 }
 

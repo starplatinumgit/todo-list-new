@@ -396,6 +396,8 @@ dialog {
   padding: 10px;
   font-family: 'Caveat';
   font-weight: 700;
+  min-height: 3rem;
+  min-width: 3rem;
 }
 
 .project-title {
