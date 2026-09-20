@@ -1,6 +1,6 @@
 import * as tools from "./tools.js"
 import handle from "./handle.png";
-import biohazard from "./vecteezy_biohazard_36657370.svg";
+import deleteSvg from "./delete.svg";
 import * as storage from "./storage.js";
 
 export const renderProjects = function(projectsArr) {
@@ -16,6 +16,7 @@ export const renderProjects = function(projectsArr) {
 
         //fill controls div
         const todoCount = tools.createElement('span', 'note-count', controlsDiv);
+        todoCount.title = "number of todos"
         const projectTitle = tools.createElement('span', 'project-title', controlsDiv);
         const openProjectButton = tools.createElement('img', 'handle', controlsDiv);
         openProjectButton.title = "open project";
@@ -63,7 +64,7 @@ export const renderProjects = function(projectsArr) {
         projectTitle.textContent = projectsArr[i].title;
         openProjectButton.src = handle; 
         addTodoButton.textContent = "+";
-        deleteProjectImage.src = biohazard;
+        deleteProjectImage.src = deleteSvg;
 
     }
 }
@@ -111,7 +112,6 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
     
             //fill bar contents' contents
             todoTitle.textContent = project.todoArr[i].title;
-            todoDeleteButton.textContent = "X";
             todoDueDate.textContent = project.todoArr[i].dueDate;
             todoCheckbox.type = "checkbox";
     
