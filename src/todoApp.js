@@ -10,7 +10,9 @@ export const runApp = function() {
         console.log("no data!");
         myProjects = projects.createProjects(); 
         storage.createSaveStateFunction(myProjects);
-        myProjects.createProject("Default Project");
+        myProjects.createProject("My first project!");
+        myProjects.projectsArr[0].createTodo("Get in the zone", 0, "pssst... hit that play button! the orange one up there! Then get to work...")
+
     }
     else {
         console.log("data!");
@@ -48,5 +50,16 @@ export const runApp = function() {
         document.getElementById('new-todo-form').reset();
         document.getElementById('new-todo-dialog').close();
     })
+
+    document.getElementById('music-button').addEventListener('click', () => {
+        const song = document.getElementById('music');
+        if (!music.paused) {
+            music.pause();
+        }
+        else {
+            music.play();
+        }
+    })
+
     display.renderProjects(myProjects.projectsArr);
 }

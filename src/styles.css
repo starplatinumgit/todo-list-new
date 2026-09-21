@@ -210,6 +210,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+}
+
+#music-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.9rem;
+}
+
+#music-button:hover {
+  border: 1px solid rgb(204, 203, 203);
 }
 
 #master-container {
