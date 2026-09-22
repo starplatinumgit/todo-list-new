@@ -61,6 +61,7 @@ export const renderProjects = function(projectsArr) {
             storage.saveState();
             //rerender projects
             renderProjects(projectsArr);
+            deleteProjectDialog.close();
         })
 
         deleteProjectDeclineButton.addEventListener('click', () => {
