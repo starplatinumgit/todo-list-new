@@ -258,9 +258,9 @@ body {
   grid-template-rows: repeat(2, auto);
 }
 
-/* new project, todo dialog start */
+/* new project, todo dialog, delete project dialog, start */
 
-#new-project-dialog, #new-todo-dialog {
+#new-project-dialog, #new-todo-dialog, #delete-project-dialog {
   font-family: "VT323";
   border: 1px solid black;
   color: white;
@@ -328,7 +328,7 @@ dialog {
   padding: 20px;
   background-size: 100%;
   background-color: #fff7e2;
-  background-color: rgb(235, 223, 169);
+  background-color: rgb(236, 224, 171);
   background-repeat: none;
   gap: 5px;
   font-family: "IBM Plex Mono";

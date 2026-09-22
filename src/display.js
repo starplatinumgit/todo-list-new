@@ -46,12 +46,25 @@ export const renderProjects = function(projectsArr) {
         })
 
         // create delete project functionality
+        const deleteProjectDialog = document.getElementById('delete-project-dialog');
         deleteProjectButton.addEventListener('click', () => {
+            deleteProjectDialog.showModal();
+
+        })
+        
+        const deleteProjectConfirmButton = document.getElementById('delete-project-confirm');
+        const deleteProjectDeclineButton = document.getElementById('delete-project-decline');
+        
+        deleteProjectConfirmButton.addEventListener('click', () => {
             //delete the project
             projectsArr.splice(i, 1);
             storage.saveState();
             //rerender projects
             renderProjects(projectsArr);
+        })
+
+        deleteProjectDeclineButton.addEventListener('click', () => {
+            deleteProjectDialog.close();
         })
 
         // create open project functionality 
