@@ -4,9 +4,11 @@ import deleteSvg from "./delete.svg";
 import * as storage from "./storage.js";
 import openAudioMp3 from "./open.mp3";
 import closeAudioMp3 from "./close.mp3";
+import clickAudioMp3 from "./click.mp3";
 
 const openAudio = new Audio(openAudioMp3);
 const closeAudio = new Audio(closeAudioMp3);
+const clickAudio = new Audio(clickAudioMp3);
 let currentProjects = undefined;
 
 export const renderProjects = function(projectsArr) {
@@ -27,7 +29,7 @@ export const renderProjects = function(projectsArr) {
         const openProjectButton = tools.createElement('img', 'handle', controlsDiv);
         openProjectButton.title = "open project";
         const addTodoButton = tools.createElement('button', 'add-note-button', controlsDiv);
-        addTodoButton.title = "create todo";
+        addTodoButton.title = "new todo";
         const deleteProjectButton = tools.createElement('button', 'delete-project-button', controlsDiv);
         deleteProjectButton.title = "delete project";
         const deleteProjectImage = tools.createElement('img', 'delete-project-image', deleteProjectButton);
@@ -144,6 +146,7 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
             descriptionP.textContent = project.todoArr[i].description;
             
             todoCheckbox.addEventListener('change', (e) => {
+                clickAudio.play();
                 project.todoArr[i].complete = (!(project.todoArr[i].complete))
                 storage.saveState();
                 todoDiv.classList.toggle('todo-complete');
