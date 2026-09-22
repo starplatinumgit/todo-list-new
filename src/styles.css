@@ -411,6 +411,11 @@ dialog {
   justify-items: center;
   align-items: center;
   border: 10px solid #4b4c4e;
+  border-top: none;
+}
+
+.first-project {
+  border-top: 10px solid #4b4c4e;
 }
 
 .note-count {

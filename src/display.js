@@ -26,6 +26,15 @@ export const renderProjects = function(projectsArr) {
         deleteProjectButton.title = "delete project";
         const deleteProjectImage = tools.createElement('img', 'delete-project-image', deleteProjectButton);
 
+        // add a class for the first project so that borders don't overlap
+
+        if (i === 0) {
+            controlsDiv.classList.add('first-project');
+        }
+        else {
+            controlsDiv.classList.remove('first-project');
+        }
+
         //create a todo
         addTodoButton.addEventListener('click', () => {
             const newTodoDialog = document.getElementById('new-todo-dialog');
