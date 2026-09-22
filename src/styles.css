@@ -213,6 +213,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  gap: 2px;
 }
 
 #music-button {
@@ -223,6 +224,7 @@ body {
 
 #music-button:hover {
   border: 1px solid rgb(204, 203, 203);
+  cursor: pointer;
 }
 
 #master-container {

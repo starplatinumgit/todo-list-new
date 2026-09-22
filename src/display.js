@@ -7,6 +7,7 @@ import closeAudioMp3 from "./close.mp3";
 
 const openAudio = new Audio(openAudioMp3);
 const closeAudio = new Audio(closeAudioMp3);
+let currentProjects = undefined;
 
 export const renderProjects = function(projectsArr) {
     //for each project in the projectsArr, we need to create a project instance
@@ -51,28 +52,18 @@ export const renderProjects = function(projectsArr) {
         })
 
         // create delete project functionality
-        const deleteProjectDialog = document.getElementById('delete-project-dialog');
+        const deleteThisProject = function() {
+            projectsArr.splice(i, 1);
+        }
+
         deleteProjectButton.addEventListener('click', () => {
             deleteProjectDialog.showModal();
-
+            currentProjects = projectsArr;
+            currentDeleteProjectFunction = deleteThisProject;
         })
+
         
-        const deleteProjectConfirmButton = document.getElementById('delete-project-confirm');
-        const deleteProjectDeclineButton = document.getElementById('delete-project-decline');
         
-        deleteProjectConfirmButton.addEventListener('click', () => {
-            //delete the project
-            projectsArr.splice(i, 1);
-            storage.saveState();
-            //rerender projects
-            renderProjects(projectsArr);
-            deleteProjectDialog.close();
-        })
-
-        deleteProjectDeclineButton.addEventListener('click', () => {
-            deleteProjectDialog.close();
-        })
-
         // create open project functionality 
         openProjectButton.addEventListener('click', () => {
             // check if project is already open
@@ -95,7 +86,7 @@ export const renderProjects = function(projectsArr) {
         openProjectButton.src = handle; 
         addTodoButton.textContent = "+";
         deleteProjectImage.src = deleteSvg;
-
+        
     }
 }
 
@@ -105,10 +96,10 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
         todoContainer.classList.add('contents-todos-container-open');
         for (let i = 0; i < (project.todoArr).length; i++) {
             const todoDiv = tools.createElement('div', 'todo-instance', todoContainer);
-    
+            
             //create priority
             const todoPriority = tools.createElement('span', 'todo-priority', todoDiv);
-    
+            
             //create bar and contents 
             const todoBar = tools.createElement('div', 'todo-bar', todoDiv);
             const todoTitle = tools.createElement('p', 'todo-title', todoBar);
@@ -116,40 +107,40 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
             const todoDeleteButton = tools.createElement('button', 'todo-delete', buttonDiv);
             const todoDueDate = tools.createElement('p', 'todo-due-date', todoDiv);
             const todoCheckbox = tools.createElement('input', 'todo-checkbox', buttonDiv);
-
+            
             todoDeleteButton.title  = "delete todo";
-    
+            
             todoDeleteButton.addEventListener('click', (e) => {
                 // delete todo
                 project.todoArr.splice(i, 1);
-    
+                
                 // decrease todo count
                 project.todoCount--;
                 storage.saveState();
-    
+                
                 //need to change the current project and todoCountElement
                 //the updateTodoCount function requires them to be set
                 //if not set here, they may be set by say an add todo prior 
-    
+                
                 todoCountElement.textContent = `${tools.formatNumberToTally(project.todoCount)}`;
                 if (project.todoCount === 0) {
                     todoContainer.classList.remove('contents-todos-container-open');
                 }
-    
+                
                 // rerender
                 renderTodos(project, todoContainer, todoCountElement);
             })
-    
+            
             //fill bar contents' contents
             todoTitle.textContent = project.todoArr[i].title;
             todoDueDate.textContent = project.todoArr[i].dueDate;
             todoCheckbox.type = "checkbox";
-    
+            
             //create description and its contents
             const descriptionDiv = tools.createElement('div', 'todo-description', todoDiv);
             const descriptionP = tools.createElement('p', 'todo-description-p', descriptionDiv);
             descriptionP.textContent = project.todoArr[i].description;
-    
+            
             todoCheckbox.addEventListener('change', (e) => {
                 project.todoArr[i].complete = (!(project.todoArr[i].complete))
                 storage.saveState();
@@ -165,7 +156,7 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
                 else {
                     todoPriority.textContent = project.todoArr[i].priority;
                 }
-    
+                
             }
             renderPriorityDependentElements();
             if (project.todoArr[i].complete) {
@@ -197,8 +188,8 @@ todoForm.addEventListener('submit', (e) => {
         document.getElementById('todo-description').value,
         document.getElementById('todo-date').value
     )
-
-
+    
+    
     //render todo 
     updateTodoCount();
     renderTodos(currentProject, currentTodoDiv, currentTodoCount);
@@ -211,3 +202,23 @@ const updateTodoCount = function() {
     currentTodoCount.textContent = `${tools.formatNumberToTally(currentProject.todoCount)}`;
 }
 
+let currentDeleteProjectFunction = function() {
+    console.log("hi!");
+}
+
+const deleteProjectConfirmButton = document.getElementById('delete-project-confirm');
+const deleteProjectDeclineButton = document.getElementById('delete-project-decline');
+const deleteProjectDialog = document.getElementById('delete-project-dialog');
+
+deleteProjectConfirmButton.addEventListener('click', () => {
+    //delete the project
+    currentDeleteProjectFunction();
+    storage.saveState();
+    //rerender projects
+    renderProjects(currentProjects);
+    deleteProjectDialog.close();
+})
+
+deleteProjectDeclineButton.addEventListener('click', () => {
+    deleteProjectDialog.close();
+})

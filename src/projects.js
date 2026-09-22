@@ -21,7 +21,6 @@ export class Projects {
                 this.projectsArr.push(myProject);
         }
     }
-
 }
 
 export const createProjects = () => new Projects();
