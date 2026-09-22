@@ -245,6 +245,7 @@ body {
     border-radius: 3px;
     background-color: #d8d7cf;
     font-family: "Bitcount Single";
+    opacity: 75%;
 }
 
 #new-project-button:hover {
@@ -419,6 +420,10 @@ dialog {
 }
 
 .first-project {
+  border-top: 10px solid #4b4c4e;
+}
+
+.open-project-border {
   border-top: 10px solid #4b4c4e;
 }
 

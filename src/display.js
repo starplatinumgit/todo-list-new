@@ -71,10 +71,12 @@ export const renderProjects = function(projectsArr) {
             // if already open, wipe todos 
             if (todoDiv.hasChildNodes()) {
                 todoDiv.classList.remove('contents-todos-container-open');
+                controlsDiv.classList.remove('open-project-border');
                 wipeContents(todoDiv);
                 closeAudio.play();
             }
             else {
+                controlsDiv.classList.add('open-project-border');
                 renderTodos(projectsArr[i], todoDiv, todoCount);
                 openAudio.play();
             }
