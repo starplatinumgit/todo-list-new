@@ -2,6 +2,11 @@ import * as tools from "./tools.js"
 import handle from "./handle.png";
 import deleteSvg from "./delete.svg";
 import * as storage from "./storage.js";
+import openAudioMp3 from "./open.mp3";
+import closeAudioMp3 from "./close.mp3";
+
+const openAudio = new Audio(openAudioMp3);
+const closeAudio = new Audio(closeAudioMp3);
 
 export const renderProjects = function(projectsArr) {
     //for each project in the projectsArr, we need to create a project instance
@@ -76,9 +81,11 @@ export const renderProjects = function(projectsArr) {
             if (todoDiv.hasChildNodes()) {
                 todoDiv.classList.remove('contents-todos-container-open');
                 wipeContents(todoDiv);
+                closeAudio.play();
             }
             else {
                 renderTodos(projectsArr[i], todoDiv, todoCount);
+                openAudio.play();
             }
         })
 
