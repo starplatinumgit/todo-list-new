@@ -12,6 +12,7 @@ export const runApp = function() {
         storage.createSaveStateFunction(myProjects);
         myProjects.createProject("My first project!");
         myProjects.projectsArr[0].createTodo("Get in the zone", 0, "pssst... hit that play button! the orange one up there! Then get to work...")
+        myProjects.projectsArr[0].createTodo("Background credit: @timmorrrow", 0, "check him out!")
 
     }
     else {
