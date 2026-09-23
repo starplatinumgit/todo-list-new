@@ -483,6 +483,12 @@ dialog {
   background-color: black;
   font-size: 0.8rem;
   text-align: center;
-  opacity: 10%;
+  opacity: 30%;
+  color: white;
+  font-family: "IBM Plex Mono";
+}
+
+#footer a {
+  text-decoration: none;
   color: white;
 }
