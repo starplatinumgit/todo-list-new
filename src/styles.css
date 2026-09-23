@@ -203,6 +203,7 @@ body {
     background-image: url('backrooms.jpg');
     background-size: 100%;
     min-height: 100vh;
+    background-repeat: none;
 }
 
 #title-div {
@@ -253,9 +254,6 @@ body {
 #new-project-button:hover {
   background-color: rgb(235, 234, 234);
   cursor: pointer;
-}
-
-#projects-container {
 }
 
 .project-instance-div {

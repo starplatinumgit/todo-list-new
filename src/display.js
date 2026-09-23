@@ -10,6 +10,7 @@ const openAudio = new Audio(openAudioMp3);
 const closeAudio = new Audio(closeAudioMp3);
 const clickAudio = new Audio(clickAudioMp3);
 let currentProjects = undefined;
+let currentElement = undefined; 
 
 export const renderProjects = function(projectsArr) {
     //for each project in the projectsArr, we need to create a project instance
@@ -47,6 +48,7 @@ export const renderProjects = function(projectsArr) {
         addTodoButton.addEventListener('click', () => {
             const newTodoDialog = document.getElementById('new-todo-dialog');
 
+            currentElement = controlsDiv;
             currentProject = projectsArr[i];
             currentTodoDiv = todoDiv;
             currentTodoCount = todoCount;
@@ -59,6 +61,7 @@ export const renderProjects = function(projectsArr) {
         }
 
         deleteProjectButton.addEventListener('click', () => {
+            currentElement = controlsDiv;
             deleteProjectDialog.showModal();
             currentProjects = projectsArr;
             currentDeleteProjectFunction = deleteThisProject;
@@ -77,8 +80,8 @@ export const renderProjects = function(projectsArr) {
                 wipeContents(todoDiv);
                 closeAudio.play();
             }
-            else {
-                controlsDiv.classList.add('open-project-border');
+            else if (projectsArr[i].todoCount !== 0){
+                currentElement = controlsDiv;
                 renderTodos(projectsArr[i], todoDiv, todoCount);
                 openAudio.play();
             }
@@ -97,6 +100,7 @@ export const renderProjects = function(projectsArr) {
 const renderTodos = function(project, todoContainer, todoCountElement) {
     wipeContents(todoContainer);
     if (project.todoArr.length != 0) {
+        currentElement.classList.add('open-project-border');
         todoContainer.classList.add('contents-todos-container-open');
         for (let i = 0; i < (project.todoArr).length; i++) {
             const todoDiv = tools.createElement('div', 'todo-instance', todoContainer);
@@ -122,6 +126,9 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
                 project.todoCount--;
                 storage.saveState();
                 
+                if (project.todoArr.length === 0) {
+                    todoContainer.nextElementSibling.classList.remove('open-project-border');
+                }
                 //need to change the current project and todoCountElement
                 //the updateTodoCount function requires them to be set
                 //if not set here, they may be set by say an add todo prior 
@@ -196,8 +203,9 @@ todoForm.addEventListener('submit', (e) => {
     
     
     //render todo 
-    updateTodoCount();
+    openAudio.play();
     renderTodos(currentProject, currentTodoDiv, currentTodoCount);
+    updateTodoCount();
     
     todoForm.reset();
     todoDialog.close();
@@ -215,7 +223,7 @@ const deleteProjectConfirmButton = document.getElementById('delete-project-confi
 const deleteProjectDeclineButton = document.getElementById('delete-project-decline');
 const deleteProjectDialog = document.getElementById('delete-project-dialog');
 
-deleteProjectConfirmButton.addEventListener('click', () => {
+deleteProjectConfirmButton.addEventListener('click', (size) => {
     //delete the project
     currentDeleteProjectFunction();
     storage.saveState();
