@@ -1,4 +1,5 @@
 import * as tools from "./tools.js"
+import * as todo from "./todo.js"
 import handle from "./handle.png";
 import deleteSvg from "./delete.svg";
 import * as storage from "./storage.js";
@@ -11,6 +12,7 @@ const closeAudio = new Audio(closeAudioMp3);
 const clickAudio = new Audio(clickAudioMp3);
 let currentProjects = undefined;
 let currentElement = undefined; 
+let isEditingTodo = false;
 
 export const renderProjects = function(projectsArr) {
     //for each project in the projectsArr, we need to create a project instance
@@ -112,11 +114,15 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
             const todoBar = tools.createElement('div', 'todo-bar', todoDiv);
             const todoTitle = tools.createElement('p', 'todo-title', todoBar);
             const buttonDiv = tools.createElement('div', 'button-div', todoBar);
+            const todoEditButton = tools.createElement('button', 'todo-edit', buttonDiv);
             const todoDeleteButton = tools.createElement('button', 'todo-delete', buttonDiv);
             const todoDueDate = tools.createElement('p', 'todo-due-date', todoDiv);
             const todoCheckbox = tools.createElement('input', 'todo-checkbox', buttonDiv);
             
             todoDeleteButton.title  = "delete todo";
+            todoEditButton.title = "edit todo";
+
+            todoEditButton
             
             todoDeleteButton.addEventListener('click', (e) => {
                 // delete todo
