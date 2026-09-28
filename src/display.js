@@ -13,6 +13,12 @@ const clickAudio = new Audio(clickAudioMp3);
 let currentProjects = undefined;
 let currentElement = undefined; 
 let isEditingTodo = false;
+let currentTodo = undefined;
+const newTodoDialog = document.getElementById('new-todo-dialog');
+// functionality for new todo form 
+let currentProject = undefined;
+let currentTodoDiv = undefined;
+let currentTodoCount = undefined;
 
 export const renderProjects = function(projectsArr) {
     //for each project in the projectsArr, we need to create a project instance
@@ -48,7 +54,6 @@ export const renderProjects = function(projectsArr) {
 
         //create a todo
         addTodoButton.addEventListener('click', () => {
-            const newTodoDialog = document.getElementById('new-todo-dialog');
 
             currentElement = controlsDiv;
             currentProject = projectsArr[i];
@@ -122,7 +127,19 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
             todoDeleteButton.title  = "delete todo";
             todoEditButton.title = "edit todo";
 
-            todoEditButton
+            todoEditButton.addEventListener('click', () => {
+                isEditingTodo = true;
+                currentTodo = project.todoArr[i];
+                document.getElementById('todo-title').value = currentTodo.title;
+                document.getElementById('todo-priority').value = currentTodo.priority;
+                document.getElementById('todo-description').value = currentTodo.description;
+                document.getElementById('todo-date').value = currentTodo.dueDate;
+                currentTodoCount = todoCountElement;
+                currentProject = project;
+                currentTodoDiv = todoContainer;
+
+                newTodoDialog.showModal();
+            })
             
             todoDeleteButton.addEventListener('click', (e) => {
                 // delete todo
@@ -190,22 +207,33 @@ export const wipeContents = function(containerElement) {
     }
 }
 
-// functionality for new todo form 
-let currentProject = undefined;
-let currentTodoDiv = undefined;
-let currentTodoCount = undefined;
 const todoForm = document.getElementById('new-todo-form');
 const todoDialog = document.getElementById('new-todo-dialog');
 
 todoForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    // create todo 
-    currentProject.createTodo(
-        document.getElementById('todo-title').value,
-        document.getElementById('todo-priority').value,
-        document.getElementById('todo-description').value,
-        document.getElementById('todo-date').value
-    )
+    // edit todo?
+    if (isEditingTodo) {
+        currentTodo.edit(
+                document.getElementById('todo-title').value,
+                document.getElementById('todo-priority').value,
+                document.getElementById('todo-description').value,
+                document.getElementById('todo-date').value
+        )
+        renderTodos(currentProject, currentTodoDiv, currentTodoCount);
+        isEditingTodo = false;
+        currentTodo = undefined;
+        storage.saveState();
+    }
+    else {
+        // create todo 
+        currentProject.createTodo(
+                document.getElementById('todo-title').value,
+                document.getElementById('todo-priority').value,
+                document.getElementById('todo-description').value,
+                document.getElementById('todo-date').value
+        )
+    }
     
     
     //render todo 

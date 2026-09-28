@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import * as storage from "./storage";
 
 class Todo {
     constructor(title, priority, description, dueDate) {
@@ -38,8 +39,9 @@ class Todo {
     }
 }
 
-export const editTodo = function(todo, title, priority, description, dueDate, complete) {
-    todo.editTodo(title, priority, description, dueDate, complete);
+export const editTodo = function(todo, title, priority, description, dueDate) {
+    todo.edit(title, priority, description, dueDate);
+    storage.saveState();
 }
 
 export const createTodo = function(title, priority, description, dueDate){
