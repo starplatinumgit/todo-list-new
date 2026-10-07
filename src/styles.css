@@ -402,9 +402,16 @@ dialog {
 }
 
 .todo-edit {
-  background-color: red;
   height: 15px;
   width: 15px;
+  background-image: url(edit-button-svgrepo-com.svg);
+  background-size: 100%;
+  background-color: transparent;
+  border: none;
+}
+
+.todo-edit:hover {
+  cursor: pointer;
 }
 
 
@@ -470,7 +477,6 @@ dialog {
 
 .add-note-button:hover, .delete-project-button:hover, .todo-delete:hover, #close-project-dialog:hover {
   cursor: pointer;
-  border: 1px solid rgb(172, 170, 170);
 }
 
 .delete-project-button {

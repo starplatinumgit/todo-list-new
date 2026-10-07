@@ -41,7 +41,6 @@ class Todo {
 
 export const editTodo = function(todo, title, priority, description, dueDate) {
     todo.edit(title, priority, description, dueDate);
-    storage.saveState();
 }
 
 export const createTodo = function(title, priority, description, dueDate){

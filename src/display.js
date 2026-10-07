@@ -1,4 +1,5 @@
 import * as tools from "./tools.js"
+import { format } from "date-fns";
 import * as todo from "./todo.js"
 import handle from "./handle.png";
 import deleteSvg from "./delete.svg";
@@ -133,7 +134,7 @@ const renderTodos = function(project, todoContainer, todoCountElement) {
                 document.getElementById('todo-title').value = currentTodo.title;
                 document.getElementById('todo-priority').value = currentTodo.priority;
                 document.getElementById('todo-description').value = currentTodo.description;
-                document.getElementById('todo-date').value = currentTodo.dueDate;
+                document.getElementById('todo-date').value = format(currentTodo.dueDate, 'yyyy-dd-MM');
                 currentTodoCount = todoCountElement;
                 currentProject = project;
                 currentTodoDiv = todoContainer;
