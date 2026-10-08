@@ -1,0 +1,508 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Increase line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+/* styling end*/
+
+.gochi-hand-regular {
+  font-family: "Gochi Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.sixtyfour-regular {
+  font-family: "Sixtyfour", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "BLED" 0,
+    "SCAN" 0;
+}
+
+
+.montserrat-regular {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+.bitcount-single {
+  font-family: "Bitcount Single", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;
+}
+
+.vt323-regular {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ibm-plex-mono-thin {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.ibm-plex-mono-extralight {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.ibm-plex-mono-light {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ibm-plex-mono-regular {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ibm-plex-mono-medium {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ibm-plex-mono-semibold {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.ibm-plex-mono-bold {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ibm-plex-mono-thin-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.ibm-plex-mono-extralight-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.ibm-plex-mono-light-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ibm-plex-mono-regular-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ibm-plex-mono-medium-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ibm-plex-mono-semibold-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.ibm-plex-mono-bold-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.caveat {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* fonts */
+
+
+
+body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 1fr auto;
+    background-color: rgb(238, 232, 221);
+    background-image: url(c2ccf0b7a640bfaaacf6.jpg);
+    background-size: 100%;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+}
+
+#title-div {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  font-family: "IBM Plex Mono";
+  color: #000000;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 2px;
+}
+
+#music-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.9rem;
+}
+
+#music-button:hover {
+  border: 1px solid rgb(204, 203, 203);
+  cursor: pointer;
+}
+
+#master-container {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#new-project-div {
+    width: 100%;
+    grid-row-start: 1;
+}
+
+#new-project-button {
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    background-color: #d8d7cf;
+    font-family: "Bitcount Single";
+    opacity: 75%;
+}
+
+#new-project-button:hover {
+  background-color: rgb(235, 234, 234);
+  cursor: pointer;
+}
+
+.project-instance-div {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+}
+
+/* new project, todo dialog, delete project dialog, start */
+
+#new-project-dialog, #new-todo-dialog, #delete-project-dialog {
+  font-family: "VT323";
+  border: 1px solid black;
+  color: white;
+}
+
+#new-project-close-div, #new-todo-close-div {
+  display: flex;
+  justify-content: end;
+}
+
+#close-project-dialog, #close-todo-dialog{
+  border: none;
+  background-color:  transparent;
+  color: white;
+}
+
+#new-project-input-div, .new-todo-input-div {
+  display: flex;
+  gap: 4px;
+}
+
+#project-title, .todo-input {
+  border: none;
+  background-color: transparent;
+  caret-color: white;
+  color: white;
+  width: 100%;
+  resize: vertical;
+}
+
+#project-title:focus, #todo-title:focus, #new-project-button:focus{
+  outline: none;
+}
+
+#close-todo-dialog:hover {
+  cursor: pointer;
+}
+
+dialog {
+  background-color: blue;
+}
+
+/* new project dialog end */
+
+/* contents-todos-container start */
+
+.contents-todos-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.contents-todos-container-open {
+  border: 20px ridge #4b4c4e;
+  border-bottom: 0;
+}
+
+/* contents-todos-container end */
+
+/* todo instance start */
+
+.todo-instance {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: 1fr 4fr;
+  padding: 20px;
+  background-size: 100%;
+  background-color: #fff7e2;
+  background-color: rgb(236, 224, 171);
+  background-repeat: none;
+  gap: 5px;
+  font-family: "IBM Plex Mono";
+  color: black;
+}
+
+.todo-priority {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-row: 1 / span 2;
+  grid-column-start: 1;
+  font-size: 2rem;
+  text-shadow: 0 0 8px white;
+}
+
+.todo-bar {
+  grid-row-start: 1;
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-title {
+  text-shadow: 0 0 8px white;
+}
+.todo-description {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  font-size: 0.8rem;
+}
+
+.todo-checkbox {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.todo-checkbox:checked {
+  background-color: green;
+  accent-color: gray;
+}
+
+.todo-due-date {
+  grid-row-start: 3;
+  grid-column: 2;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.todo-complete {
+  opacity: 70%;
+}
+
+.todo-delete {
+  color: black;
+  background-image: url(a946cf0c251843fd72a8.svg);
+  background-size: 100%;
+  height: 15px;
+  width: 15px;
+  gap: 5px;
+}
+
+.todo-edit {
+  height: 15px;
+  width: 15px;
+  background-image: url(3850e0ebedd15efb907f.svg);
+  background-size: 100%;
+  background-color: transparent;
+  border: none;
+}
+
+.todo-edit:hover {
+  cursor: pointer;
+}
+
+
+/* todo instance end */
+
+/* contents controls start */
+
+.contents-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+  padding: 20px;
+  background-color: rgb(214, 211, 211);
+  color: white;
+  font-family: "Bitcount Single";
+  justify-items: center;
+  align-items: center;
+  border: 10px solid #4b4c4e;
+  border-top: none;
+}
+
+.first-project {
+  border-top: 10px solid #4b4c4e;
+}
+
+.open-project-border {
+  border-top: 10px solid #4b4c4e;
+}
+
+.note-count {
+  color: black;
+  background-image: url(e9a1f1ca3cc8a8163cf1.png);
+  background-size: 100%;
+  padding: 10px;
+  font-family: 'Caveat';
+  font-weight: 700;
+  min-height: 3rem;
+  min-width: 3rem;
+}
+
+.project-title {
+  color: black;
+  background-image: url(e9a1f1ca3cc8a8163cf1.png);
+  background-size: 100%;
+  padding: 10px;
+  font-family: 'Caveat';
+  font-weight: 700;
+}
+
+.handle {
+  width: 90%;
+  height: 3rem;
+}
+
+.handle:hover {
+  cursor: pointer;
+}
+
+.add-note-button, .delete-project-button,  .todo-delete {
+  border: none;
+  background-color: transparent;
+  color: black;
+}
+
+.add-note-button:hover, .delete-project-button:hover, .todo-delete:hover, #close-project-dialog:hover {
+  cursor: pointer;
+}
+
+.delete-project-button {
+  height: 30px;
+  width: 30px;
+}
+
+
+
+/* contents controls end */
+
+#footer {
+  grid-row-start: 3;
+  grid-column-start: span 3;
+  background-color: #93813F;
+  background-color: black;
+  font-size: 0.8rem;
+  text-align: center;
+  opacity: 30%;
+  color: white;
+  font-family: "IBM Plex Mono";
+}
+
+#footer a {
+  text-decoration: none;
+  color: white;
+}
+
+/*# sourceMappingURL=app.bundle.css.map*/
