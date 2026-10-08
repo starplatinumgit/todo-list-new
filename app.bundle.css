@@ -202,6 +202,7 @@ body {
     background-color: rgb(238, 232, 221);
     background-image: url(c2ccf0b7a640bfaaacf6.jpg);
     background-size: 100%;
+    background-size: cover;
     min-height: 100vh;
     background-repeat: no-repeat;
 }
